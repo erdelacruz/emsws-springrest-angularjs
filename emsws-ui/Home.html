@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html ng-app="Application">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>EMS Employee Management System</title>
+
+<style>
+#employees {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#employees td, #employees th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+#employees th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #4CAF50;
+    color: white;
+}
+.error{
+	font-size:12px;
+	 color: red;
+}
+
+
+</style>
+
+</head>
+<body ng-controller="ApplicationController as ac">
+
+<center>
+<a ui-sref="Home" ng-click="ac.reset();"><button>Home</button></a> | <a ui-sref="AddEmployee" ng-click="ac.reset();"><button>Add Employee</button></a>
+</center>
+
+<div ui-view></div>
+	
+	
+</body>
+<script src="resources/js/lib/angular.min.js"></script>
+<script src="resources/js/lib/angular-ui-router.min.js"></script>
+<script src="resources/js/module.js"></script>
+<script src="resources/js/controller.js"></script>
+<script src="resources/js/service.js"></script>
+<script src="resources/js/uiroute.config.js"></script>
+
+</html>

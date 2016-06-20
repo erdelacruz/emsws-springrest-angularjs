@@ -1,0 +1,132 @@
+
+<form ng-submit="ac.submit()" name="form" novalidate>
+<input type="hidden" ng-model="ac.employee.id"/>
+	<fieldset>
+		<legend>Employee</legend>
+		
+		<fieldset>
+			<legend>General Information</legend>
+			<table width="100%">
+				<tr>
+					<td>First Name* :</td>
+					<td><input type="text" name="firstname" ng-model="ac.employee.firstname" ng-required="true"/>
+					<span class="error" ng-show="form.firstname.$dirty && form.firstname.$error.required">Firstname is required.</span>
+					</td>
+					<td>Last Name* :</td>
+					<td><input type="text" ng-model="ac.employee.lastname" ng-required="true" name="lastname"/> 
+					<span class="error" ng-show="form.lastname.$dirty && form.lastname.$error.required">Lastname is required.</span>
+					</td>
+				</tr>
+				<tr>
+					<td>Middle Name* :</td>
+					<td><input type="text" ng-model="ac.employee.middlename" ng-required="true" name="middlename"/>
+					<span class="error" ng-show="form.middlename.$dirty && form.middlename.$error.required">Middle is required.</span>
+					 </td>
+					<td>Gender* :</td>
+					<td>
+						<input type="radio" ng-model="ac.employee.gender"  value="MALE" ng-required="true" name="gender"/> Male
+						<input type="radio" ng-model="ac.employee.gender"  value="FEMALE" ng-required="true" name="gender"/> Female
+						
+						<span class="error" ng-show="form.gender.$dirty && form.gender.$error.required">Gender is required.</span>
+						
+					</td>
+				</tr>
+				<tr>
+					<td>Birth Date* :</td>
+					<td><input type="text"  ng-model="ac.employee.birthDate" ng-required="true" name="birthDate"/> 
+					<span class="error" ng-show="form.birthDate.$dirty && form.birthDate.$error.required">Birthdate is required.</span>
+					</td>
+					<td>Employed* :</td>
+					<td>
+						<input type="radio" ng-required="true" name="employed" ng-checked="ac.employee.id!==null && ac.employee.employed==true" ng-model="ac.employee.employed"  value="true"/> Yes
+						<input type="radio" ng-required="true" name="employed" ng-checked="ac.employee.id!==null && ac.employee.employed==false" ng-model="ac.employee.employed"  value="false"/> No
+						
+						<span class="error" ng-show="form.employed.$dirty && form.employed.$error.required">Employment status is required.</span>
+					
+					</td>
+				</tr>
+				<tr>
+					<td>G.W.A* :</td>
+					<td><input type="text" ng-model="ac.employee.generalWeightedAverage" ng-required="true" name="generalWeightedAverage"/> 
+					<span class="error" ng-show="form.generalWeightedAverage.$dirty && form.generalWeightedAverage.$error.required">General Weighted Average is required.</span>
+					</td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+			
+			<fieldset style="width: 300px;">
+				<legend>Role *</legend> 
+				
+				
+			    <div ng-repeat="role in ac.roles track by $index">
+				   <input  type="checkbox"  ng-model="ac.employee.roles[$index]" ng-checked="ac.isSelectedRole(role.id)==true" ng-true-value="{{role}}" ng-false-value="null"> {{role.roleName}}
+				</div>
+				
+			</fieldset>
+			
+		</fieldset>
+		
+		<fieldset>
+			<legend>Address</legend>
+			
+			<table width="100%" >
+				<tr>
+					<td>Street* :</td>
+					<td><input type="text" ng-model="ac.employee.street" ng-required="true" name="street"/>
+					<span class="error" ng-show="form.street.$dirty && form.street.$error.required">Street is required.</span>
+					 </td>
+					<td>House No.* :</td>
+					<td><input type="text" ng-model="ac.employee.houseNumber" ng-required="true" name="houseNumber"/>
+					<span class="error" ng-show="form.houseNumber.$dirty && form.houseNumber.$error.required">House number is required.</span>
+					</td>
+				</tr>
+				<tr>
+					<td>Barangay* :</td>
+					<td><input type="text" ng-model="ac.employee.barangay" ng-required="true" name="barangay"/>
+					<span class="error" ng-show="form.barangay.$dirty && form.barangay.$error.required">Barangay is required.</span>
+					</td>
+					<td>Subdivision :</td>
+					<td><input type="text" ng-model="ac.employee.subdivision"/></td>
+				</tr>
+				<tr>
+					<td>City* :</td>
+					<td><input type="text" ng-model="ac.employee.city" ng-required="true" name="city"/>
+					<span class="error" ng-show="form.city.$dirty && form.city.$error.required">City is required.</span>
+					 </td>
+					<td>Zip Code* :</td>
+					<td><input type="text" ng-model="ac.employee.zipCode" ng-required="true" name="zipCode"/>
+					<span class="error" ng-show="form.zipCode.$dirty && form.zipCode.$error.required">Zip code is required.</span>
+					 </td>
+				</tr>
+				
+			</table>
+		</fieldset>
+		
+		<fieldset>
+			<legend>Contact</legend>
+			
+			<table width="100%" >
+				<tr>
+					<td>Type :</td>
+					<td>
+						<input type="radio" ng-model="ac.employee.contactType" value="MOBILE"/> Mobile
+						
+						<input type="radio" ng-model="ac.employee.contactType"  value="PHONE"/> Phone
+					</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Contact Number :</td>
+					<td><input ng-model="ac.employee.contactNumber"/></td>
+					<td></td>
+					<td></td>
+				</tr>
+				
+			</table>
+		</fieldset>
+		<center><button type="submit" ng-disabled="form.$invalid"> Submit</button></center>
+	</fieldset>
+	
+</form>

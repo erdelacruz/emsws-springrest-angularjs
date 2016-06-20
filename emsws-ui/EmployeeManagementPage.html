@@ -1,0 +1,87 @@
+
+	<fieldset>
+		<legend>Employee</legend>
+		<form ng-submit="ac.search()">
+		<fieldset>
+			<legend>Search Employee</legend>
+			<table width="100%">
+				<tr>
+					<td>First Name :</td>
+					<td><input type="text" ng-model="ac.searchQuery.firstname"/></td>
+					<td>Last Name :</td>
+					<td><input type="text" ng-model="ac.searchQuery.lastname"/></td>
+				</tr>
+				<tr>
+					<td>Middle Name :</td>
+					<td><input type="text" ng-model="ac.searchQuery.middlename"/></td>
+					<td>Role :</td>
+					<td>
+						<select ng-model="ac.searchQuery.roleId">
+							<option value="">Select Role:</option>
+							<option ng-repeat="role in ac.roles" value='{{role.id}}'>{{role.roleName}}</option>
+						</select>
+						
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4"><center><button type="submit">Search</button><center></td>
+				</tr>
+			</table>
+		</fieldset>
+		</form>
+		
+		
+		<p style="color:#00b300;">{{ac.successMessage}}</p>
+		<p style="color:red;">{{ac.errorMessage}}</p>
+		
+		<form ng-submit="ac.batchDelete()">
+		<fieldset>
+			<legend>List of Employees</legend>
+			<div style="float:right; margin-bottom: 10px;">
+			
+					<button type="submit">BATCH DELETE</button>
+				
+			</div>
+			
+			<table width="100%" id="employees">
+							<tr>
+								<td></td>
+								<td>ID</td>
+								<td>First Name</td>
+								<td>Middle Name</td>
+								<td>Last Name</td>
+								<td>Gender</td>
+								<td>Birth Date</td>
+								<td>Employed</td>
+								<td>G.W.A</td>
+								<td>Role/Roles</td>
+								<td>Action</td>
+							</tr>
+							
+								<tr ng-repeat="employee in ac.employees track by $index">
+									<td><input type="checkbox" ng-model="ac.collectionOfId[$index].id" ng-true-value="{{employee.id}}"></td>
+									<td>{{employee.id}}</td>
+									<td>{{employee.firstname}}</td>
+									<td>{{employee.middlename}}</td>
+									<td>{{employee.lastname}}</td>
+									<td>{{employee.gender}}</td>
+									<td>{{employee.birthDate}}</td>
+									<td>{{employee.employed}}</td>
+									<td>{{employee.generalWeightedAverage}}</td>
+									<td>
+										<ul>	
+											<li ng-repeat="role in employee.roles">
+												{{role.roleName}}
+											</li>
+										</ul>
+									</td>
+									<td><a ng-click="ac.getEmployeeById(employee.id);"><button>Update</button></a>
+									 | <a ng-click="ac.deleteEmployee(employee.id);"><button>Delete</button></a></td>
+								</tr>
+							
+						</table>
+					
+			
+		</fieldset>
+		</form>
+	</fieldset>
